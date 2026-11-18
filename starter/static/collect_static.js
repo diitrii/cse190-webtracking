@@ -15,8 +15,11 @@ export async function collect() {
     // DO NOT MODIFY the last line in this function (fingerprint(out)); this is
     // necessary to ensure your fingerprints are being properly compared to one
     // another.
-    
+
     const out = {};
-    try { out["userAgent"] = navigator.userAgent; } catch { out["userAgent"] = null; }
+    try { out["userAgent"] = navigator.userAgent; } catch { out["userAgent"] = null; } //fingerprinting userAgent
+    try { out["languages"] = navigator.language; } catch { out["languages"] = null; } //fingerprinting multiple languages
+    try { out["height"] = screen.height } catch { out["height"] = null; } //fingerprinting the screen's height
+    try { out["geolocation"] = navigator.geolocation; } catch { out["geolocation"] = null; } //check user location
     return fingerprint(out);
 }
