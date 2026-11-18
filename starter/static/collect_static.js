@@ -19,7 +19,7 @@ export async function collect() {
     const out = {};
     try { out["userAgent"] = navigator.userAgent; } catch { out["userAgent"] = null; } //fingerprinting userAgent
     try { out["languages"] = navigator.language; } catch { out["languages"] = null; } //fingerprinting multiple languages
-    try { out["height"] = screen.height } catch { out["height"] = null; } //fingerprinting the screen's height
+    try { out["height"] = screen.height; } catch { out["height"] = null; } //fingerprinting the screen's height
     try { out["geolocation"] = navigator.geolocation; } catch { out["geolocation"] = null; } //check user location
     return fingerprint(out);
 }
