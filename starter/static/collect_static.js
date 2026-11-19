@@ -20,11 +20,18 @@ export async function collect() {
     try { out["userAgent"] = navigator.userAgent; } catch { out["userAgent"] = null; } //fingerprinting userAgent
     try { out["languages"] = navigator.language; } catch { out["languages"] = null; } //fingerprinting multiple languages
     try { out["height"] = screen.height; } catch { out["height"] = null; } //fingerprinting the screen's height
+    try { out["width"] = screen.width; } catch { out["width"] = null; } //fingerprint the screen's width
     try { out["geolocation"] = navigator.geolocation; } catch { out["geolocation"] = null; } //check user location
     try { out["orientation"] = screen.orientation; } catch { out["orientation"] = null; } //check user orientation (prolly mobile vs desktop)
     try { out["availHeight"] = screen.availHeight; } catch { out["availHeight"] = null; } //check the height of screen minus user interface features
     try { out["availWidth"] = screen.availWidth; } catch { out["availWidth"] = null; } //check available width of the screen 
     try { out["appVersion"] = navigator.appVersion; } catch { out["appVersion"] = null; } //check verison of browser
     try { out["mimeTypes"] = navigator.mimeTypes; } catch { out["mimeTypes"] = null; } //check mime types
+    try { out["mediaCapabilities"] = navigator.mediaCapabilities; } catch { out["mediaCapabilities"] = null; } //check media capabilities
+    try { out["pdfViewerEnabled"] = navigator.pdfViewerEnabled; } catch { out["pdfViewerEnabled"] = null; } //check current settings if pdfs can be viewed inline
+    try { out["connection"] = navigator.connection; } catch { out["connection"] = null; } //check user connection 
+    try { out["hardwareConcurrency"] = navigator.hardwareConcurrency; } catch { out["hardwareConcurrency"] = null; } //check hardware concurrency
+    try { out["deviceMemory"] = navigator.deviceMemory; } catch { out["deviceMemory"] = null; } //check device memory
+
     return fingerprint(out);
 }
