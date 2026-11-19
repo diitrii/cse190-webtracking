@@ -32,6 +32,8 @@ export async function collect() {
     try { out["connection"] = navigator.connection; } catch { out["connection"] = null; } //check user connection 
     try { out["hardwareConcurrency"] = navigator.hardwareConcurrency; } catch { out["hardwareConcurrency"] = null; } //check hardware concurrency
     try { out["deviceMemory"] = navigator.deviceMemory; } catch { out["deviceMemory"] = null; } //check device memory
-
+    try { out["bluetooth"] = navigator.bluetooth; } catch { out["bluetooth"] = null; } //detect BLE devices
+    try { out["clipboard"] = navigator.clipboard; } catch { out["clipboard"] = null; } //check clipboard
+    try { out["cookieEnabled"] = navigator.cookieEnabled; } catch { out["cookieEnabled"] = null; } //check if a cookie is set
     return fingerprint(out);
 }

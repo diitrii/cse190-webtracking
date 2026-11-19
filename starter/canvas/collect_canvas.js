@@ -7,7 +7,11 @@ import { hash, canon, FONTS } from "./helpers.js";
 
 function textCanvasFingerprint() {
     // TODO: Implement a basic, text-based canvas fingerprint.
-    const fp = "";
+    const fp = document.createElement('canvas');
+    const ctx = fp.getContext('2d');
+    ctx.font = "18pt Arial";
+    ctx.textBaseline = "top";
+    ctx.fillText("hello, user", 2, 2);
     return hash(fp);
 }
 
@@ -31,8 +35,8 @@ function graphicalCanvasFingerprint() {
 
 export async function collect() {
     const out = {};
-    try { out["part_one"]   = textCanvasFingerprint();      } catch { out["part_one"]   = null; }
-    try { out["part_two"]   = detectInstalledFonts();       } catch { out["part_two"]   = null; }
+    try { out["part_one"] = textCanvasFingerprint(); } catch { out["part_one"] = null; }
+    try { out["part_two"] = detectInstalledFonts(); } catch { out["part_two"] = null; }
     try { out["part_three"] = graphicalCanvasFingerprint(); } catch { out["part_three"] = null; }
     return out;
 }
