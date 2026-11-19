@@ -21,5 +21,10 @@ export async function collect() {
     try { out["languages"] = navigator.language; } catch { out["languages"] = null; } //fingerprinting multiple languages
     try { out["height"] = screen.height; } catch { out["height"] = null; } //fingerprinting the screen's height
     try { out["geolocation"] = navigator.geolocation; } catch { out["geolocation"] = null; } //check user location
+    try { out["orientation"] = screen.orientation; } catch { out["orientation"] = null; } //check user orientation (prolly mobile vs desktop)
+    try { out["availHeight"] = screen.availHeight; } catch { out["availHeight"] = null; } //check the height of screen minus user interface features
+    try { out["availWidth"] = screen.availWidth; } catch { out["availWidth"] = null; } //check available width of the screen 
+    try { out["appVersion"] = navigator.appVersion; } catch { out["appVersion"] = null; } //check verison of browser
+    try { out["mimeTypes"] = navigator.mimeTypes; } catch { out["mimeTypes"] = null; } //check mime types
     return fingerprint(out);
 }
