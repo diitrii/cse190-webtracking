@@ -3,8 +3,33 @@
 // Place your implementation in the three functions below.
 // Do not rename the functions and do not change `collect()`.
 
-async function audioSum(){
-    // TODO: Implement an audio sum fingerprint.
+async function audioSum() {
+  const ctx = new OfflineAudioContext(1, 5000, 44100);
+
+  // sine wave at ~C5
+  const osc = ctx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.value = 528;
+
+  const comp = ctx.createDynamicsCompressor();
+  comp.threshold.value = -50;
+  comp.knee.value = 40;
+  comp.ratio.value = 12;
+  comp.attack.value = 0;
+  comp.release.value = 0.2;
+
+  osc.connect(comp);
+  comp.connect(ctx.destination);
+  osc.start();
+
+  const buffer = await ctx.startRendering();
+  const samples = buffer.getChannelData(0);
+
+  let hash = 0;
+  for (let i = 0; i < samples.length; ++i) {
+    hash += Math.abs(samples[i]);
+  }
+  return hash;
 }
 
 async function audioSumWithSimpleFarbling() {
